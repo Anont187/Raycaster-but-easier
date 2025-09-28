@@ -1,0 +1,113 @@
+        <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <html>
+        <head>
+            <title>raycaster tut</title>
+        </head>
+        <body>
+<hi! today I'm gonna teach you on how to make a raycaster in mlog.
+
+1. make a moving player/camera -
+it's easy tbh if you know. If the controller is moving the joystick/controller, make it so that it moves the camera/player around. now
+how to move that player is you find the direction of where the controller or the handle of the joystick us going and add that by speed. find tutorials on YouTube.
+
+2. make a ray swiveling -
+first you need a field of view it fov. then calculate minfov by flipping it around or negating it.
+make a ray that swivels from minfov to fov. if you want, add quality. divide your screenwidth by quality, quality is manually set up by you for preferences, your screenwidth is your max quality. now, get the player/camera angle and add that to the ray swiveling.
+formula: 
+NewAngle = playerAng + swiveled
+5n5
+3. make walls -
+teqnically, it's hard. but if you are using dda, this might be easy.
+I use electricgun100's wall technique which from 1 variable theres jumps. if the var is 1, 
+set the beginning x and y and end x and y to set 1. just like an array. easy to use. we will countinue this later.
+
+3. midpoint -
+t = 
+(x1-x3)*(y3-y4)-(y1-y3)*(x3-x4)
+               /
+(x1-x2)*(y3-y4)-(y1-y2)*(x3-x4)
+
+u = 
+(x1-x2)*(y1-y3)-(y1-y2)*(x1-x3)
+               /
+(x1-x2)*(y3-y4)-(y1-y2)*(x3-x4)
+U1 = u * -1
+
+midx = (x1 + t*(x2-x1))
+midy = (y1 + t*(y2-y1))
+
+midx and midy are the midpoints
+x1 and y1 is player x and y
+X2 and y2 are 
+X2 = x1 + NewAngle
+y2 = y1 + NewAngle
+X3 and y3 are the beginning of the wall
+X4 and y4 are the end of the wall 
+now we need to find the distance  
+between the player and the midpoint
+it's at number 4
+
+4. distance -
+we calculate this by 
+Nmidx = midx - 88
+Nmidy = midy - 88
+distance = Len(Nmidx, Nmidy)
+yeah right
+
+5. W A L L S -
+so in a different wall, we uhm 
+draw it by wait 
+
+so 
+walla = 500 / correct distance 
+wallb = walla * -1
+walla2 = walla + 88
+wallb2 = wallb + 88
+
+to clear things up, 88 is the middle of the displaywidth or it half because it is 176 x 176. 500 is example distance or example wall distance. player with it.
+
+5. FIND YOUR X
+well 
+
+The Mapping Part
+x = (NewAngle + FOV) / angle_increment_per_x
+angle_increment_per_x = (FOV*2) / (screen_width - 1) = 110 / 175
+
+Simplified
+x = (NewAngle + 55) * 175 / 110
+
+so 110 came from fov*2 and fov is 55
+175 came from screenwidth - 1 or 176 -1
+newAngle at num 2
+
+now it is synced!
+
+dundundundun
+
+now render wall if 0<t<1 and 0<U1<1 
+if not skip render and and draw wall only not clear ok? if x is at 176 or high then clear
+
+6. wall correction
+today we'll use perspective correction 
+Correct distance =  playerAng - NewAngle 
+remember NewAngle is the rayAng
+
+
+
+there you have it
+
+creds to electricgun100
+I mixed my knowledge with electrigguns
+mine Abt 290+ lines
+
+dm me if you need help
+@anont187
+discord>
+<!DOCTYPE html>
+        <html>
+        <head>
+    
